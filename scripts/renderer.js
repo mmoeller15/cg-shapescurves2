@@ -67,7 +67,7 @@ class Renderer {
         //   - variable `this.num_curve_sections` should be used for `num_edges`
         //   - variable `this.show_points` should be used to determine whether or not to render vertices
         
-        this.drawCircle({x: 300, y:300}, 200, this.num_curve_sections, [0, 128, 128, 255], framebuffer);
+        this.drawCircle({x: 300, y:300}, 200, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
     }
 
     // framebuffer:  canvas ctx image data
