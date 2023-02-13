@@ -56,7 +56,9 @@ class Renderer {
         
         // Following line is example of drawing a single line
         // (this should be removed after you implement the curve)
-        this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
+
+        //this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
+        this.drawBezierCurve({x: 100, y: 100}, {x: 300, y: 200}, {x: 600, y: 300}, {x: 800, y: 500}, 20, [255, 0, 0, 255], framebuffer)
     }
 
     // framebuffer:  canvas ctx image data
@@ -100,6 +102,33 @@ class Renderer {
     // framebuffer:  canvas ctx image data
     drawBezierCurve(p0, p1, p2, p3, num_edges, color, framebuffer) {
         // TODO: draw a sequence of straight lines to approximate a Bezier curve
+
+        let x_old = p0.x;
+        let y_old = p0.y;
+
+        //let j = 0;
+
+            //for (let i = p0.x; i <= p2.x; i = i + ((p2.x - p0.x) / num_edges)) {
+                for (let j = 0; j <=1; j+=(1/num_edges)) {
+                //let x = (((1 - j)**3) * p0.x) + (3*(1 - j) * (j**2) * p2.x);
+                let x = (((1 - j)**3) * p0.x) + (3*((1 - j)**2) * j * 0) + (3*(1 - j) * (j**2) * p2.x) + ((j**3) *0);
+                let y = (((1 - j)**3) * p0.y) + (3*((1 - j)**2) * j * p1.y) + (3*(1 - j) * (j**2) * p2.y) + ((j**3) *p3.y);
+
+                       
+                console.log('x = ' + x)
+                console.log('y = ' + y)
+
+                this.drawLine({x: x_old, y: y_old}, {x: x, y: y}, color, framebuffer);
+
+                console.log('xold = ' + x_old)
+                console.log('yold = ' + y_old)
+
+                x_old = x;
+                y_old = y;
+                //j+=(1/num_edges);
+                //console.log('i = ' + i)
+                console.log('j = ' + j)
+            }
         
         
     }
