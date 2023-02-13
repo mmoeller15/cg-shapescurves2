@@ -58,7 +58,7 @@ class Renderer {
         // (this should be removed after you implement the curve)
 
         //this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
-        this.drawBezierCurve({x: 100, y: 100}, {x: 100, y: 200}, {x: 800, y: 800}, {x: 100, y: 500}, this.num_curve_sections, [255, 0, 0, 255], framebuffer)
+        this.drawBezierCurve({x: 100, y: 100}, {x: 100, y: 200}, {x: 800, y: 800}, {x: 100, y: 500}, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
     }
 
     // framebuffer:  canvas ctx image data
