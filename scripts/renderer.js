@@ -109,7 +109,7 @@ class Renderer {
         //let j = 0;
 
             //for (let i = p0.x; i <= p2.x; i = i + ((p2.x - p0.x) / num_edges)) {
-                for (let j = 0; j <=1; j+=(1/num_edges)) {
+                for (let j = 0; j <= 1; j += (1/num_edges)) {
                 //let x = (((1 - j)**3) * p0.x) + (3*(1 - j) * (j**2) * p2.x);
                 let x = (((1 - j)**3) * p0.x) + (3*((1 - j)**2) * j * 0) + (3*(1 - j) * (j**2) * p2.x) + ((j**3) *0);
                 let y = (((1 - j)**3) * p0.y) + (3*((1 - j)**2) * j * p1.y) + (3*(1 - j) * (j**2) * p2.y) + ((j**3) *p3.y);
