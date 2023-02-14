@@ -67,7 +67,7 @@ class Renderer {
         //   - variable `this.num_curve_sections` should be used for `num_edges`
         //   - variable `this.show_points` should be used to determine whether or not to render vertices
         
-        this.drawCircle({x: 300, y:300}, 200, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
+        this.drawCircle({x: 350, y:350}, 200, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
     }
 
     // framebuffer:  canvas ctx image data
@@ -134,15 +134,14 @@ class Renderer {
     // framebuffer:  canvas ctx image data
     drawCircle(center, radius, num_edges, color, framebuffer) {
         // TODO: draw a sequence of straight lines to approximate a circle
-        console.log(center.x)
         
-         let p_old = {x: center.x + radius, y: center.y};
-         console.log(p_old)
+        let p_old = {x: center.x + radius, y: center.y};
+        let a = (2*Math.PI)/num_edges;
 
-         for (let theta = 0; theta < 360; theta = theta + (360 / num_edges)) {
-
+        for (let i = 0; i < num_edges; i++) {
+            let theta = (i + 1)*a;
+            console.log(theta);
             let p = {x: Math.round(center.x + radius*Math.cos(theta)), y: Math.round(center.y + radius*Math.sin(theta))};
-            console.log(p)
 
             this.drawLine({x: p_old.x, y: p_old.y}, {x: p.x, y: p.y}, color, framebuffer);
 
