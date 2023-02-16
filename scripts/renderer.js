@@ -58,7 +58,8 @@ class Renderer {
         // (this should be removed after you implement the curve)
 
         //this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
-        this.drawBezierCurve({x: 100, y: 100}, {x: 100, y: 200}, {x: 800, y: 800}, {x: 100, y: 500}, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
+
+        this.drawBezierCurve({x: 50, y: 500}, {x: 100, y: 100}, {x: 400, y: 500}, {x: 700, y: 300}, this.num_curve_sections, [10, 68, 94, 255], framebuffer);
     }
 
     // framebuffer:  canvas ctx image data
@@ -68,6 +69,8 @@ class Renderer {
         //   - variable `this.show_points` should be used to determine whether or not to render vertices
         
         this.drawCircle({x: 350, y:350}, 200, this.num_curve_sections, [255, 0, 0, 255], framebuffer);
+        this.drawCircle({x: 500, y:250}, 100, this.num_curve_sections, [120, 34, 134, 255], framebuffer);
+
     }
 
     // framebuffer:  canvas ctx image data
@@ -78,10 +81,26 @@ class Renderer {
         
         // Following lines are example of drawing a single triangle
         // (this should be removed after you implement the polygon)
-        let point_a = {x:  80, y:  40};
-        let point_b = {x: 320, y: 160};
-        let point_c = {x: 240, y: 360};
-        this.drawTriangle(point_a, point_c, point_b, [0, 128, 128, 255], framebuffer);
+
+        // let point_a = {x:  80, y:  40};
+        // let point_b = {x: 320, y: 160};
+        // let point_c = {x: 240, y: 360};
+        //this.drawTriangle(point_a, point_c, point_b, [0, 128, 128, 255], framebuffer);
+
+        let oct_0 = {x: 300, y: 200};
+        let oct_1 = {x: 350, y: 200};
+        let oct_2 = {x: 390, y: 240};
+        let oct_3 = {x: 390, y: 290};
+        let oct_4 = {x: 350, y: 330};
+        let oct_5=  {x: 300, y: 330};
+        let oct_6 = {x: 260, y: 290};
+        let oct_7 = {x: 260, y: 240};
+
+        this.drawConvexPolygon([oct_0, oct_1, oct_2, oct_3, oct_4, oct_5, oct_6, oct_7], [50, 84, 55, 200], framebuffer)
+
+        this.drawConvexPolygon([{x:  500, y:  300}, {x: 700, y: 300}, {x: 750, y: 500}, {x: 700, y: 580}, {x: 500, y: 550},{x: 400, y: 500}], [0, 128, 128, 255], framebuffer)
+
+        
     }
 
     // framebuffer:  canvas ctx image data
@@ -89,8 +108,32 @@ class Renderer {
         // TODO: draw your name!
         //   - variable `this.num_curve_sections` should be used for `num_edges`
         //   - variable `this.show_points` should be used to determine whether or not to render vertices
-        
-        
+
+        //M
+        this.drawBezierCurve({x: 50, y: 200}, {x: 50, y: 400}, {x: 75, y: 400}, {x: 100, y: 200}, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+        this.drawBezierCurve({x: 100, y: 200}, {x: 110, y: 400}, {x: 130, y: 400}, {x: 150, y: 200}, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+
+        //A
+        this.drawCircle({x: 230, y: 250}, 50, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+        this.drawLine({x: 280, y: 200}, {x: 280, y: 250}, [62, 74, 50, 255], framebuffer);
+
+        //D
+        this.drawConvexPolygon([{x: 300, y: 200}, {x: 400, y: 200}, {x: 400, y: 300}, {x: 300, y: 300}], [62, 74, 50, 255], framebuffer);
+        this.drawLine({x: 400, y: 200}, {x: 400, y: 450}, [62, 74, 50, 255], framebuffer);
+
+        //D
+        this.drawConvexPolygon([{x: 450, y: 200}, {x: 500, y: 200}, {x: 520, y: 250}, {x: 500, y: 300}, {x: 450, y: 300}, {x: 430, y: 250}], [62, 74, 50, 255], framebuffer);
+        this.drawLine({x: 520, y: 200}, {x: 520, y: 450}, [62, 74, 50, 255], framebuffer);
+
+
+        //I
+        this.drawBezierCurve({x: 550, y: 200}, {x: 600, y: 300}, {x: 600, y: 350}, {x: 550, y: 300}, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+        this.drawCircle({x: 570, y: 350}, 8, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+
+        //E
+        this.drawBezierCurve({x: 700, y: 200}, {x: 600, y: 250}, {x: 600, y: 300}, {x: 700, y: 300}, this.num_curve_sections, [62, 74, 50, 255], framebuffer);
+        this.drawLine({x: 625, y: 270}, {x: 680, y: 270}, [62, 74, 50, 255], framebuffer);
+
     }
 
     // p0:           object {x: __, y: __}
@@ -123,7 +166,11 @@ class Renderer {
             y_old = y;            
         }
         if (this.show_points) {
-                console.log('yes');
+                this.drawVertex(p0, [0, 0, 0, 255], framebuffer)
+                this.drawVertex(p1, [224, 7, 7, 255], framebuffer)
+                this.drawVertex(p2, [224, 7, 7, 255], framebuffer)
+                this.drawVertex(p3, [0, 0, 0, 255], framebuffer)
+
         }
     }
 
@@ -134,22 +181,24 @@ class Renderer {
     // framebuffer:  canvas ctx image data
     drawCircle(center, radius, num_edges, color, framebuffer) {
         // TODO: draw a sequence of straight lines to approximate a circle
-        
+
         let p_old = {x: center.x + radius, y: center.y};
         let a = (2*Math.PI)/num_edges;
 
         for (let i = 0; i < num_edges; i++) {
             let theta = (i + 1)*a;
-            console.log(theta);
             let p = {x: Math.round(center.x + radius*Math.cos(theta)), y: Math.round(center.y + radius*Math.sin(theta))};
 
             this.drawLine({x: p_old.x, y: p_old.y}, {x: p.x, y: p.y}, color, framebuffer);
-
+           
+               
+            if (this.show_points) {
+                this.drawVertex(p_old, [0, 0, 0, 255], framebuffer);
+            }  
+           
             p_old = {x: p.x, y: p.y};
-        }
-        if (this.show_points) {
-                console.log('yes');
-        }
+
+        }  
     }
     
     // vertex_list:  array of object [{x: __, y: __}, {x: __, y: __}, ..., {x: __, y: __}]
@@ -158,7 +207,15 @@ class Renderer {
     drawConvexPolygon(vertex_list, color, framebuffer) {
         // TODO: draw a sequence of triangles to form a convex polygon
         
-        
+        for(let n = 1; n < vertex_list.length-1; n++) {
+            this.drawTriangle(vertex_list[0], vertex_list[n], vertex_list[n+1], color, framebuffer);
+        }
+
+        if (this.show_points) { 
+            for (let i = 0; i < vertex_list.length; i++) {
+                this.drawVertex(vertex_list[i], [0, 0, 0, 255], framebuffer)
+            }
+        }
     }
     
     // v:            object {x: __, y: __}
@@ -166,9 +223,17 @@ class Renderer {
     // framebuffer:  canvas ctx image data
     drawVertex(v, color, framebuffer) {
         // TODO: draw some symbol (e.g. small rectangle, two lines forming an X, ...) centered at position `v`
-        
+  
+        this.drawLine({x: v.x - 5, y: v.y - 5}, {x: v.x + 5, y: v.y + 5}, color, framebuffer);
+        this.drawLine({x: v.x + 5, y: v.y - 5}, {x: v.x - 5, y: v.y + 5}, color, framebuffer);
+
+        // add another two lines to make line thicker - easier to see
+        this.drawLine({x: v.x - 5, y: v.y - 4}, {x: v.x + 5, y: v.y + 6}, color, framebuffer);
+        this.drawLine({x: v.x + 5, y: v.y - 4}, {x: v.x - 5, y: v.y + 6}, color, framebuffer);
         
     }
+
+
     
     /***************************************************************
      ***       Basic Line and Triangle Drawing Routines          ***
@@ -272,10 +337,23 @@ class Renderer {
     
     drawTriangle(p0, p1, p2, color, framebuffer) {
         // Sort points in ascending y order
-        if (p1.y < p0.y) this.swapPoints(p0, p1);
-        if (p2.y < p0.y) this.swapPoints(p0, p2);
-        if (p2.y < p1.y) this.swapPoints(p1, p2);
-        
+
+        let switch_1 = 0;
+        let switch_2 = 0;
+        let switch_3 = 0;
+
+        if (p1.y < p0.y) {
+            this.swapPoints(p0, p1);
+            switch_1 = 1;
+        } 
+        if (p2.y < p0.y) {
+            this.swapPoints(p0, p2);
+            switch_2 = 1;
+        } 
+        if (p2.y < p1.y) {
+            this.swapPoints(p1, p2);
+            switch_3 = 1;
+        }
         // Edge coherence triangle algorithm
         // Create initial edge table
         let edge_table = [
@@ -326,6 +404,18 @@ class Renderer {
             }
             left_edge.x += left_edge.inv_slope;
             right_edge.x += right_edge.inv_slope;
+        }
+
+
+        // undo switches
+        if (switch_1) {
+            this.swapPoints(p0, p1);
+        }
+        if (switch_2) {
+            this.swapPoints(p0, p2);
+        }
+        if (switch_3) {
+            this.swapPoints(p1, p2);
         }
     }
 };
