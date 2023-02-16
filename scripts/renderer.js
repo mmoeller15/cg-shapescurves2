@@ -59,7 +59,9 @@ class Renderer {
 
         //this.drawLine({x: 100, y: 100}, {x: 600, y: 300}, [255, 0, 0, 255], framebuffer);
 
-        this.drawBezierCurve({x: 50, y: 500}, {x: 100, y: 100}, {x: 400, y: 500}, {x: 700, y: 300}, this.num_curve_sections, [10, 68, 94, 255], framebuffer);
+        this.drawBezierCurve({x: 50, y: 500}, {x: 50, y: 50}, {x: 400, y: 500}, {x: 700, y: 300}, this.num_curve_sections, [10, 68, 94, 255], framebuffer);
+
+        this.drawBezierCurve({x: 100, y: 100}, {x: 300, y: 500}, {x: 500, y: 100}, {x: 500, y: 300}, this.num_curve_sections, [73, 183, 191, 255], framebuffer);
     }
 
     // framebuffer:  canvas ctx image data
@@ -167,8 +169,8 @@ class Renderer {
         }
         if (this.show_points) {
                 this.drawVertex(p0, [0, 0, 0, 255], framebuffer)
-                this.drawVertex(p1, [224, 7, 7, 255], framebuffer)
-                this.drawVertex(p2, [224, 7, 7, 255], framebuffer)
+                this.drawVertex(p1, color, framebuffer)
+                this.drawVertex(p2, color, framebuffer)
                 this.drawVertex(p3, [0, 0, 0, 255], framebuffer)
 
         }
